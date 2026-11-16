@@ -60,3 +60,33 @@ with open("data/sales.csv") as infile, open("data/cleaned.csv", "w", newline="")
             written_count += 1
 
 print(f"Wrote {written_count} of {original_count} rows to data/cleaned.csv")
+
+# --- Exercise 6 ---
+# csv.reader is fine for small files where I know the column order, like row[1] for price.
+# csv.DictReader is better when there are a lot of columns or the order might change, because row["price"] is easier to read.
+dict_total = 0
+
+with open("data/sales.csv") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        price = float(row["price"])
+        quantity = int(row["quantity"])
+        line_total = price * quantity
+        dict_total += line_total
+        print(f"{row['product']}: {quantity} units × ${price:.2f} = ${line_total:.2f}")
+
+print(f"Total revenue: ${dict_total:.2f}")
+print(f"Same as Exercise 4: {round(dict_total, 2) == round(total_revenue, 2)}")
+
+# --- Exercise 7 ---
+summary = {}
+
+with open("data/sales.csv") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        product = row["product"]
+        line_total = float(row["price"]) * int(row["quantity"])
+        summary[product] = summary.get(product, 0) + line_total
+
+for product in sorted(summary):
+    print(f"{product}: ${summary[product]:.2f}")
