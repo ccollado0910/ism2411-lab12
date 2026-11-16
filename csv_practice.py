@@ -1,3 +1,7 @@
+# Self Assessment Questions
+# Q1: In Excel I would have to type the total formula, drag it down, filter for orders over $100, and copy them to a new sheet, and I would have to do all of that again every time I got a new file. With Python I write the steps once and just run the script on any new file, and it works the same on 12 rows or a million. Excel is still easier when I just want to look at the data, fix one cell, or make a quick chart without writing code.
+# Q2: At my restaurant job, a script could run at closing every night and add the date and that day's total sales to a log file. Append mode is the right tool because each night adds a new line and keeps all the nights before it, so the manager gets a running history. If it used "w" mode, every run would erase the file and only the last night would be left.
+
 import csv
 from datetime import datetime
 
