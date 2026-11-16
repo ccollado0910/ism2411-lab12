@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 # --- Exercise 1 ---
 # Check that data/sales.csv is there and has a header plus 12 data rows
@@ -90,3 +91,12 @@ with open("data/sales.csv") as file:
 
 for product in sorted(summary):
     print(f"{product}: ${summary[product]:.2f}")
+
+# --- Exercise 8 ---
+# "a" adds a new line to the end each run instead of erasing the file like "w" would
+now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+with open("data/run_log.txt", "a") as log:
+    log.write(f"{now} | Total revenue: ${total_revenue:.2f}\n")
+
+print(f"Logged this run to data/run_log.txt at {now}")
